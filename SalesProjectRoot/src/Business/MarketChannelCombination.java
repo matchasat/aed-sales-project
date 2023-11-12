@@ -6,6 +6,9 @@ package Business;
 
 import Business.Channels.Channels;
 import Business.Markets.Markets;
+import Business.Solution.Solution;
+import Business.Solution.SolutionCatalog;
+import java.util.ArrayList;
 
 /**
  *
@@ -14,10 +17,12 @@ import Business.Markets.Markets;
 public class MarketChannelCombination {
     private Markets market;
     private Channels channel;
-
+    private SolutionCatalog solutionCatalog;
+    
     public MarketChannelCombination(Markets market, Channels channel) {
         this.market = market;
         this.channel = channel;
+        this.solutionCatalog = new SolutionCatalog();
     }
 
     public Markets getMarket() {
@@ -35,6 +40,30 @@ public class MarketChannelCombination {
     public void setChannel(Channels channel) {
         this.channel = channel;
     }
+    
+    public SolutionCatalog getSolutionCatalog() {
+        return solutionCatalog;
+    }
+
+    public void addSolution(Solution solution) {
+        solutionCatalog.addSolution(solution);
+    }
+
+    public ArrayList<Solution> getAllSolutions() {
+        return solutionCatalog.getAllSolutions();
+    }
+
+    public Solution findSolutionByName(String solutionName) {
+        return solutionCatalog.findSolutionByName(solutionName);
+    }
+
+    public ArrayList<Solution> findSolutionsByDescription(String descriptionText) {
+        return solutionCatalog.findSolutionsByDescription(descriptionText);
+    }
+
+    // public ArrayList<Solution> findSolutionsForMarket(Markets market) {
+    //     return solutionCatalog.findSolutionsForMarket(market);
+    // }
 
     @Override
     public String toString() {

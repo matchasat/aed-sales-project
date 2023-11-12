@@ -5,6 +5,10 @@
 package UserInterface;
 
 import Business.Business;
+import Business.Channels.Channels;
+import Business.MarketChannelCombination;
+import Business.Markets.Markets;
+import Business.Solution.SolutionCatalog;
 
 /**
  *
@@ -19,8 +23,70 @@ public class MainFrame extends javax.swing.JFrame {
         initComponents();
     }
     
-    public void dataGenerator(){
+    public static void dataGenerator(){
         Business myBusiness = new Business("Xerox Systems");
+        
+        //Create and name Markets for our Business
+
+        myBusiness.addMarket(new Markets("North America","US","USD"));
+        myBusiness.addMarket(new Markets("North America","Canada","CAD"));
+        myBusiness.addMarket(new Markets("Asia","India","INR"));
+        myBusiness.addMarket(new Markets("Asia","China","Yuan"));
+        myBusiness.addMarket(new Markets("Asia","Japan","Yen"));
+        
+        System.out.println(myBusiness.getAllMarkets());
+                
+        Markets americanMarket = myBusiness.getMarket(0);
+        Markets canadianMarket = myBusiness.getMarket(1);
+        Markets indianMarket = myBusiness.getMarket(2);
+        Markets chineseMarket = myBusiness.getMarket(3);
+        Markets japaneseMarket = myBusiness.getMarket(4);
+        
+        // Get the corresponding channels
+        
+        Channels directSalesChannel = new Channels("Direct Sales", "Selling products directly to customers without intermediaries");
+        Channels retailStoresChannel = new Channels("Retail Stores", "Selling products through retail stores");
+        Channels onlineMarketplacesChannel = new Channels("Online Marketplaces", "Selling products through online marketplaces");
+
+        // Get the corresponding MarketChannel Combinations
+
+        MarketChannelCombination americanDirectSalesChannel = new MarketChannelCombination(americanMarket, directSalesChannel);
+        MarketChannelCombination canadianDirectSalesChannel = new MarketChannelCombination(canadianMarket, directSalesChannel);
+        MarketChannelCombination indianDirectSalesChannel = new MarketChannelCombination(indianMarket, directSalesChannel);
+        MarketChannelCombination chineseDirectSalesChannel = new MarketChannelCombination(chineseMarket, directSalesChannel);
+        MarketChannelCombination japaneseDirectSalesChannel = new MarketChannelCombination(japaneseMarket, directSalesChannel);
+
+        MarketChannelCombination americanRetailStoresChannel = new MarketChannelCombination(americanMarket, retailStoresChannel);
+        MarketChannelCombination canadianRetailStoresChannel = new MarketChannelCombination(canadianMarket, retailStoresChannel);
+        MarketChannelCombination indianRetailStoresChannel = new MarketChannelCombination(indianMarket, retailStoresChannel);
+        MarketChannelCombination chineseRetailStoresChannel = new MarketChannelCombination(chineseMarket, retailStoresChannel);
+        MarketChannelCombination japaneseRetailStoresChannel = new MarketChannelCombination(japaneseMarket, retailStoresChannel);
+
+        MarketChannelCombination americanOnlineMarketplacesChannel = new MarketChannelCombination(americanMarket, onlineMarketplacesChannel);
+        MarketChannelCombination canadianOnlineMarketplacesChannel = new MarketChannelCombination(canadianMarket, onlineMarketplacesChannel);
+        MarketChannelCombination indianOnlineMarketplacesChannel = new MarketChannelCombination(indianMarket, onlineMarketplacesChannel);
+        MarketChannelCombination chineseOnlineMarketplacesChannel = new MarketChannelCombination(chineseMarket, onlineMarketplacesChannel);
+        MarketChannelCombination japaneseOnlineMarketplacesChannel = new MarketChannelCombination(japaneseMarket, onlineMarketplacesChannel);
+        
+        // Get the corresponding SolutionCatalogs
+        SolutionCatalog americanDirectSalesCatalog = americanDirectSalesChannel.getSolutionCatalog();
+        SolutionCatalog canadianDirectSalesCatalog = canadianDirectSalesChannel.getSolutionCatalog();
+        SolutionCatalog indianDirectSalesCatalog = indianDirectSalesChannel.getSolutionCatalog();
+        SolutionCatalog chineseDirectSalesCatalog = chineseDirectSalesChannel.getSolutionCatalog();
+        SolutionCatalog japaneseDirectSalesCatalog = japaneseDirectSalesChannel.getSolutionCatalog();
+
+        SolutionCatalog americanRetailStoresCatalog = americanRetailStoresChannel.getSolutionCatalog();
+        SolutionCatalog canadianRetailStoresCatalog = canadianRetailStoresChannel.getSolutionCatalog();
+        SolutionCatalog indianRetailStoresCatalog = indianRetailStoresChannel.getSolutionCatalog();
+        SolutionCatalog chineseRetailStoresCatalog = chineseRetailStoresChannel.getSolutionCatalog();
+        SolutionCatalog japaneseRetailStoresCatalog = japaneseRetailStoresChannel.getSolutionCatalog();
+
+        SolutionCatalog americanOnlineMarketplacesCatalog = americanOnlineMarketplacesChannel.getSolutionCatalog();
+        SolutionCatalog canadianOnlineMarketplacesCatalog = canadianOnlineMarketplacesChannel.getSolutionCatalog();
+        SolutionCatalog indianOnlineMarketplacesCatalog = indianOnlineMarketplacesChannel.getSolutionCatalog();
+        SolutionCatalog chineseOnlineMarketplacesCatalog = chineseOnlineMarketplacesChannel.getSolutionCatalog();
+        SolutionCatalog japaneseOnlineMarketplacesCatalog = japaneseOnlineMarketplacesChannel.getSolutionCatalog();
+        
         
     }
     
@@ -74,6 +140,8 @@ public class MainFrame extends javax.swing.JFrame {
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
             java.util.logging.Logger.getLogger(MainFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        
+        dataGenerator();
         //</editor-fold>
 
         /* Create and display the form */

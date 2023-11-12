@@ -11,10 +11,12 @@ package Business.Markets;
 public class Markets {
     private String region;
     private String country;
-
-    public Markets(String region, String country) {
+    private String currency;
+    
+    public Markets(String region, String country, String currency) {
         this.region = region;
         this.country = country;
+        this.currency = currency;
     }
 
     public String getRegion() {
@@ -38,6 +40,7 @@ public class Markets {
         return "Market{" +
                 "region='" + region + '\'' +
                 ", country='" + country + '\'' +
+                ", currency='" + currency + '\'' +
                 '}';
     }
 }
