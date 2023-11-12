@@ -4,6 +4,8 @@
  */
 package UserInterface;
 
+import Business.Business;
+
 /**
  *
  * @author smatcha
@@ -16,7 +18,12 @@ public class MainFrame extends javax.swing.JFrame {
     public MainFrame() {
         initComponents();
     }
-
+    
+    public void dataGenerator(){
+        Business myBusiness = new Business("Xerox Systems");
+        
+    }
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -70,11 +77,13 @@ public class MainFrame extends javax.swing.JFrame {
         //</editor-fold>
 
         /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new MainFrame().setVisible(true);
-            }
-        });
+        // java.awt.EventQueue.invokeLater(new Runnable() {
+        //     public void run() {
+        //         new MainFrame().setVisible(true);
+        //     }
+        // });
+        
+        
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
