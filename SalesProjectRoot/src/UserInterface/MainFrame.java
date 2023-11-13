@@ -6,18 +6,13 @@ package UserInterface;
 
 import Business.Business;
 import Business.Channels.Channels;
+import Business.ExcelReader;
 import Business.MarketChannelCombination;
 import Business.Markets.Markets;
 import Business.Solution.SolutionCatalog;
-
-import org.apache.poi.hssf.usermodel.HSSFWorkbook; //<-- For Excel 97-2003
-import org.apache.poi.xssf.usermodel.XSSFWorkbook;
-// import org.apache.poi.poifs.filesystem.POIFSFileSystem; <-- Older Word Extensions
-import org.apache.poi.ss.usermodel.*; // <-- Not sure whether this works
-import org.apache.xmlbeans.XmlObject;
-import org.apache.xmlbeans.XmlOptions;
-import org.apache.commons.codec.binary.Base64;
-import org.apache.commons.net.ftp.FTPClient;
+import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -33,6 +28,9 @@ public class MainFrame extends javax.swing.JFrame {
     }
     
     public static void dataGenerator(){
+        
+        // generateDataFromExcel(); <-- Run this to get to the Excel Sheet. Need to manage and prim imports before getting to the main part.
+        
         Business myBusiness = new Business("Xerox Systems");
         
         //Create and name Markets for our Business
@@ -98,7 +96,23 @@ public class MainFrame extends javax.swing.JFrame {
         
         
     }
-    
+    private static void generateDataFromExcel() {
+        String filePath = "Data/sheet0.xlsx";
+        List<List<String>> tableData;
+        try {
+            tableData = ExcelReader.readExcelTable(filePath);
+            System.out.println("Table Data:");
+            for (List<String> rowData : tableData) {
+                for (String cellData : rowData) {
+                    System.out.print(cellData + " | ");
+                }
+                System.out.println();
+            }
+        } catch (Exception ex) {
+            Logger.getLogger(MainFrame.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
