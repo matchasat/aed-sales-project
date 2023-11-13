@@ -29,7 +29,7 @@ public class MainFrame extends javax.swing.JFrame {
     
     public static void dataGenerator(){
         
-        // generateDataFromExcel(); <-- Run this to get to the Excel Sheet. Need to manage and prim imports before getting to the main part.
+        // generateDataFromExcel();// <-- Run this to get to the Excel Sheet. Need to manage and prim imports before getting to the main part.
         
         Business myBusiness = new Business("Xerox Systems");
         
