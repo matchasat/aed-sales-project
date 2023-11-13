@@ -10,6 +10,15 @@ import Business.MarketChannelCombination;
 import Business.Markets.Markets;
 import Business.Solution.SolutionCatalog;
 
+import org.apache.poi.hssf.usermodel.HSSFWorkbook; //<-- For Excel 97-2003
+import org.apache.poi.xssf.usermodel.XSSFWorkbook;
+// import org.apache.poi.poifs.filesystem.POIFSFileSystem; <-- Older Word Extensions
+import org.apache.poi.ss.usermodel.*; // <-- Not sure whether this works
+import org.apache.xmlbeans.XmlObject;
+import org.apache.xmlbeans.XmlOptions;
+import org.apache.commons.codec.binary.Base64;
+import org.apache.commons.net.ftp.FTPClient;
+
 /**
  *
  * @author smatcha
