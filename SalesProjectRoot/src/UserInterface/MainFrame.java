@@ -96,23 +96,25 @@ public class MainFrame extends javax.swing.JFrame {
         
         
     }
-    private static void generateDataFromExcel() {
-        String filePath = "Data/sheet0.xlsx";
-        List<List<String>> tableData;
-        try {
-            tableData = ExcelReader.readExcelTable(filePath);
-            System.out.println("Table Data:");
-            for (List<String> rowData : tableData) {
-                for (String cellData : rowData) {
-                    System.out.print(cellData + " | ");
-                }
-                System.out.println();
-            }
-        } catch (Exception ex) {
-            Logger.getLogger(MainFrame.class.getName()).log(Level.SEVERE, null, ex);
-        }
+
+    // private static void generateDataFromExcel() {
+    //     String filePath = "Data/sheet0.xlsx";
+    //     List<List<String>> tableData;
+    //     try {
+    //         tableData = ExcelReader.readExcelTable(filePath);
+    //         System.out.println("Table Data:");
+    //         for (List<String> rowData : tableData) {
+    //             for (String cellData : rowData) {
+    //                 System.out.print(cellData + " | ");
+    //             }
+    //             System.out.println();
+    //         }
+    //     } catch (Exception ex) {
+    //         Logger.getLogger(MainFrame.class.getName()).log(Level.SEVERE, null, ex);
+    //     }
         
-    }
+    // }
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
