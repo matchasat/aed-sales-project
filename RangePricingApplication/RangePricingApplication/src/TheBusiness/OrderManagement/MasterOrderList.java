@@ -39,19 +39,19 @@ public class MasterOrderList {
     }
     
     public MasterOrderReport generateMasterOrderReport(){
-    masterorderreport = new MasterOrderReport();
-        
-    return masterorderreport;
-        
-}
+        masterorderreport = new MasterOrderReport();
 
-public int getSalesVolume(){
+        return masterorderreport;
+        
+    }
 
-int sum = 0;
-for(Order order: orders){
-    sum = sum + order.getOrderTotal();
-}
-return sum;
+    public int getSalesVolume(){
+
+        int sum = 0;
+        for(Order order: orders){
+            sum = sum + order.getOrderTotal();
+        }
+        return sum;
     }
 
 }
