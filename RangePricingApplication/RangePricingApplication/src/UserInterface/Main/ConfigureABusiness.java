@@ -34,6 +34,7 @@ class ConfigureABusiness {
 
     static Business initialize() {
         Business business = new Business("Xerox");
+        EmployeeDirectory employeeDirectory = new EmployeeDirectory(business);
         SupplierDirectory suplierdirectory = business.getSupplierDirectory();
 
         Supplier supplier1 = suplierdirectory.newSupplier("Lenovo");
@@ -91,8 +92,7 @@ class ConfigureABusiness {
         MarketingPersonProfile marketingpersonprofile0 = marketingpersondirectory.newMarketingPersonProfile(xeroxmarketingperson001);
 
 // Create Admins to manage the business
-        EmployeeDirectory employeedirectory = business.getEmployeeDirectory();
-        EmployeeProfile employeeprofile0 = employeedirectory.newEmployeeProfile(xeroxadminperson001);
+        EmployeeProfile employeeprofile0 = employeeDirectory.newEmployeeProfile(xeroxadminperson001);
 
 // Create User accounts that link to specific profiles
         UserAccountDirectory uadirectory = business.getUserAccountDirectory();

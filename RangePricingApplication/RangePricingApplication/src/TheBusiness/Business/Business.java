@@ -78,6 +78,14 @@ public class Business {
 
     }
 
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
     public PersonDirectory getPersonDirectory() {
         return persondirectory;
     }
