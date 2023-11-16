@@ -29,5 +29,14 @@ public class MarketCatalog {
         markets.add(market);
         return market;
     }
+    
+    /**
+     *
+     */
+    public void printMarkets(){
+        for(Market m:markets){       
+            System.out.println("Market: " + m.getName() +"\t\t" + "Size: "+ "\t\t" + m.getSize());
+        }
+    }
 
 }

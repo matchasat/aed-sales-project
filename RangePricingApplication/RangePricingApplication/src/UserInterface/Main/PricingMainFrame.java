@@ -7,6 +7,7 @@ package UserInterface.Main;
 
 import MarketingManagement.MarketingPersonProfile;
 import TheBusiness.Business.Business;
+import TheBusiness.ConfigureABusiness;
 import TheBusiness.Personnel.EmployeeProfile;
 import TheBusiness.Personnel.Profile;
 import TheBusiness.SalesManagement.SalesPersonProfile;
@@ -31,7 +32,7 @@ public class PricingMainFrame extends javax.swing.JFrame {
 
     public PricingMainFrame() {
         initComponents();
-        business = ConfigureABusiness.initialize();
+        business= ConfigureABusiness.initializeMarkets();
 
     }
 

@@ -18,27 +18,46 @@ import TheBusiness.SalesManagement.SalesPersonProfile;
 public class Order {
 
     ArrayList<OrderItem> orderitems;
+    private static int nextOrderId = 1; // Static variable to keep track of the next order ID
+    private int orderId;
     CustomerProfile customer;
     SalesPersonProfile salesperson;
     MarketChannelAssignment mca;
     String status;
 
-    public Order(){}
+    public Order(){
+        this.orderId = nextOrderId++;
+    }
     
     public Order(CustomerProfile cp) {
         orderitems = new ArrayList();
+        this.orderId = nextOrderId++;
         customer = cp;
         customer.addCustomerOrder(this); //we link the order to the customer
         salesperson = null;
         status = "in process";
     }
+
+    public CustomerProfile getCustomer() {
+        return customer;
+    }
+    
+    public int getOrderId() {
+        return orderId;
+    }
     public Order(CustomerProfile cp, SalesPersonProfile ep) {
         orderitems = new ArrayList();
+        this.orderId = nextOrderId++;
         customer = cp;
         salesperson = ep;
         customer.addCustomerOrder(this); //we link the order to the customer
         salesperson.addSalesOrder(this);  
     }
+
+    public String getStatus() {
+        return status;
+    }
+    
     public OrderItem newOrderItem(Product p, int actualprice, int q) {
         OrderItem oi = new OrderItem(p, actualprice, q);
         orderitems.add(oi);

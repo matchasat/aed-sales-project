@@ -26,6 +26,14 @@ public class Market {
         validchannels = new ArrayList();
     }
 
+    public String getName() {
+        return name;
+    }
+
+    public int getSize() {
+        return size;
+    }
+
     public void addCharactersitic(String c) {
         characteristics.add(c);
     }

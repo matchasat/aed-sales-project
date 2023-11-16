@@ -17,6 +17,7 @@ import TheBusiness.ProductManagement.ProductSummary;
 import TheBusiness.SalesManagement.SalesPersonProfile;
 import TheBusiness.Supplier.Supplier;
 import java.util.ArrayList;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.table.DefaultTableModel;
 
@@ -348,6 +349,7 @@ public class ProcessOrder extends javax.swing.JPanel {
     private void BackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BackActionPerformed
         // TODO add your handling code here:
         currentOrder.CancelOrder();
+        JOptionPane.showMessageDialog(this,"Order Cancelled");
         CardSequencePanel.remove(this);
         ((java.awt.CardLayout) CardSequencePanel.getLayout()).next(CardSequencePanel);
 
@@ -356,6 +358,7 @@ public class ProcessOrder extends javax.swing.JPanel {
     private void NextActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_NextActionPerformed
         // TODO add your handling code here:
         currentOrder.Submit();
+        JOptionPane.showMessageDialog(this,"Order Submitted Successfully");
         CardSequencePanel.remove(this);
         ((java.awt.CardLayout) CardSequencePanel.getLayout()).next(CardSequencePanel);
 

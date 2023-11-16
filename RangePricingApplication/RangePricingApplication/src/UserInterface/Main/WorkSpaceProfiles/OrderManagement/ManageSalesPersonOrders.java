@@ -7,9 +7,12 @@ package UserInterface.Main.WorkSpaceProfiles.OrderManagement;
 
 import UserInterface.ProductManagement.*;
 import TheBusiness.Business.Business;
+import TheBusiness.OrderManagement.MasterOrderList;
+import TheBusiness.OrderManagement.Order;
 import TheBusiness.ProductManagement.Product;
 import TheBusiness.ProductManagement.ProductCatalog;
 import TheBusiness.ProductManagement.ProductSummary;
+import TheBusiness.SalesManagement.SalesPersonProfile;
 import TheBusiness.Supplier.Supplier;
 import java.util.ArrayList;
 import javax.swing.JPanel;
@@ -27,13 +30,18 @@ public class ManageSalesPersonOrders extends javax.swing.JPanel {
     JPanel CardSequencePanel;
     Business business;
     Supplier selectedsupplier;
+    MasterOrderList mol;
     Product selectedproduct;
+    SalesPersonProfile salesperson;
 
-    public ManageSalesPersonOrders(Business bz, JPanel jp) {
+    public ManageSalesPersonOrders(Business bz, SalesPersonProfile salesperson, JPanel jp) {
         CardSequencePanel = jp;
         this.business = bz;
+        this.salesperson=salesperson;
+        this.mol=bz.getMasterOrderList();
         initComponents();
- 
+        populateOrderTable();
+        
 
     }
 
@@ -51,7 +59,7 @@ public class ManageSalesPersonOrders extends javax.swing.JPanel {
         Next = new javax.swing.JButton();
         jScrollPane2 = new javax.swing.JScrollPane();
         jScrollPane1 = new javax.swing.JScrollPane();
-        SupplierCatalogTable = new javax.swing.JTable();
+        OrderHistoryTable = new javax.swing.JTable();
         jLabel2 = new javax.swing.JLabel();
         jLabel8 = new javax.swing.JLabel();
 
@@ -74,7 +82,7 @@ public class ManageSalesPersonOrders extends javax.swing.JPanel {
         });
         add(Next, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 260, 80, -1));
 
-        SupplierCatalogTable.setModel(new javax.swing.table.DefaultTableModel(
+        OrderHistoryTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
             },
@@ -90,15 +98,15 @@ public class ManageSalesPersonOrders extends javax.swing.JPanel {
                 return canEdit [columnIndex];
             }
         });
-        SupplierCatalogTable.addMouseListener(new java.awt.event.MouseAdapter() {
+        OrderHistoryTable.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseEntered(java.awt.event.MouseEvent evt) {
-                SupplierCatalogTableMouseEntered(evt);
+                OrderHistoryTableMouseEntered(evt);
             }
             public void mousePressed(java.awt.event.MouseEvent evt) {
-                SupplierCatalogTableMousePressed(evt);
+                OrderHistoryTableMousePressed(evt);
             }
         });
-        jScrollPane1.setViewportView(SupplierCatalogTable);
+        jScrollPane1.setViewportView(OrderHistoryTable);
 
         jScrollPane2.setViewportView(jScrollPane1);
 
@@ -111,7 +119,29 @@ public class ManageSalesPersonOrders extends javax.swing.JPanel {
         jLabel8.setText("Orders");
         add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 100, -1, 20));
     }// </editor-fold>//GEN-END:initComponents
+    
+    private void populateOrderTable(){
+        if (mol.isEmpty()) {
+            return;
+        }
+        else{
+            ArrayList<Order> orderList = mol.getOrders();
+            for (Order s : orderList) {
+            
 
+                Object[] row = new Object[5];
+                row[0] = s.getOrderId();
+                row[1] = s.getStatus();
+                row[2] = s.getOrderTotal();
+                row[3] = s.getCustomer().getCustomerId();
+
+                ((DefaultTableModel) OrderHistoryTable.getModel()).addRow(row);
+            
+
+        }
+        }
+    }
+    
     private void BackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BackActionPerformed
         // TODO add your handling code here:
         CardSequencePanel.remove(this);
@@ -125,19 +155,19 @@ public class ManageSalesPersonOrders extends javax.swing.JPanel {
  
     }//GEN-LAST:event_NextActionPerformed
 
-    private void SupplierCatalogTableMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_SupplierCatalogTableMousePressed
+    private void OrderHistoryTableMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_OrderHistoryTableMousePressed
         // TODO add your handling code 
-    }//GEN-LAST:event_SupplierCatalogTableMousePressed
+    }//GEN-LAST:event_OrderHistoryTableMousePressed
 
-    private void SupplierCatalogTableMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_SupplierCatalogTableMouseEntered
+    private void OrderHistoryTableMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_OrderHistoryTableMouseEntered
         // TODO add your handling code here:
-    }//GEN-LAST:event_SupplierCatalogTableMouseEntered
+    }//GEN-LAST:event_OrderHistoryTableMouseEntered
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton Back;
     private javax.swing.JButton Next;
-    private javax.swing.JTable SupplierCatalogTable;
+    private javax.swing.JTable OrderHistoryTable;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JScrollPane jScrollPane1;

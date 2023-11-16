@@ -19,8 +19,7 @@ public class MasterOrderList {
     MasterOrderReport masterorderreport;
     
     public MasterOrderList(){
-        orders = new ArrayList();
-       
+        orders = new ArrayList();  
     }
     
     public Order newOrder(CustomerProfile cp){
@@ -34,8 +33,11 @@ public class MasterOrderList {
         Order o= new Order(cp, spp);
         orders.add(o);
         return o;
-            
- 
+         
+    }
+
+    public ArrayList<Order> getOrders() {
+        return orders;
     }
     
     public MasterOrderReport generateMasterOrderReport(){
@@ -44,7 +46,14 @@ public class MasterOrderList {
         return masterorderreport;
         
     }
-
+    
+    public boolean isEmpty(){
+        if(orders.isEmpty()){
+            return true;
+        }
+        return false;
+    }
+    
     public int getSalesVolume(){
 
         int sum = 0;

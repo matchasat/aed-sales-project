@@ -31,7 +31,7 @@ import java.io.IOException;
  */
 public class ExcelReader {
 
-    public static void main(String[] args) throws FileNotFoundException, IOException{
+    public static void main1(String[] args) throws FileNotFoundException, IOException{
         
         FileInputStream fins= new FileInputStream(new File("/Users/smatcha/Documents/Dev/JavaAED/aed-sales-project/SalesProjectRoot/Data/sheet0.xlsx"));
         XSSFWorkbook wb = new XSSFWorkbook(fins);

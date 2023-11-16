@@ -39,9 +39,9 @@ import TheBusiness.UserAccountManagement.UserAccountDirectory;
  *
  * @author kal bugrara
  */
-class ConfigureABusiness {
+public class ConfigureABusiness {
 
-    static Business initialize() {
+    public static Business initialize() {
         Business business = new Business("Xerox");
 
     // Create Persons
@@ -157,7 +157,7 @@ class ConfigureABusiness {
 
     }
 
-    static Business initializeMarkets() {
+    public static Business initializeMarkets() {
         Business business = new Business("Xerox");
 
 // Create Persons
@@ -217,7 +217,11 @@ class ConfigureABusiness {
 
         teenmarket.addValidChannel(webchannel);
         teenmarket.addValidChannel(tvchannel);
-
+        
+        UserAccountDirectory uadirectory = business.getUserAccountDirectory();
+        UserAccount ua1 = uadirectory.newUserAccount(salespersonprofile, "Sales", "XXXX"); /// order products for one of the customers and performed by a sales person
+        UserAccount ua2 = uadirectory.newUserAccount(marketingpersonprofile0, "Marketing", "XXXX"); /// order products for one of the customers and performed by a sales person
+    //        UserAccount ua3 = uadirectory.newUserAccount(employeeprofile0, "Admin", "XXXX"); /// order products for one of the customers and performed by a sales person
         MarketChannelComboCatalog mccc = business.getMarketChannelComboCatalog();
 
         MarketChannelAssignment tvchannelteenmarket = mccc.newMarketChannelCombo(teenmarket, tvchannel);

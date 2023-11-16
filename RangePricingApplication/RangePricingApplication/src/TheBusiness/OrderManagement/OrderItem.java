@@ -40,6 +40,8 @@ public class OrderItem {
     }
 
     public boolean isActualAboveTarget() {
+        System.out.println("actual price: "+actualPrice);
+        System.out.println("targetPrice: "+selectedproduct.getTargetPrice());
         if (actualPrice > selectedproduct.getTargetPrice()) {
             return true;
         } else {
