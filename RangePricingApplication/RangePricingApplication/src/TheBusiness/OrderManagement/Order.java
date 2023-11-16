@@ -89,6 +89,14 @@ public class Order {
         }
         return sum;
     }
+
+    public void setCustomer(CustomerProfile customer) {
+        this.customer = customer;
+    }
+
+    public CustomerProfile getCustomer() {
+        return customer;
+    }
     
     //sum all the item targets and compare to the total of the order 
     public boolean isOrderAboveTotalTarget(){

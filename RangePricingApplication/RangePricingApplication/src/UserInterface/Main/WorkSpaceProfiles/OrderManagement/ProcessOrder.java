@@ -38,21 +38,34 @@ public class ProcessOrder extends javax.swing.JPanel {
     CustomerProfile customer;
     SalesPersonProfile salesperson;
 
-    public ProcessOrder(Business bz, CustomerProfile cp, SalesPersonProfile spp, JPanel jp) {
+    public ProcessOrder(Business bz, SalesPersonProfile spp, JPanel jp) {
 
         CardSequencePanel = jp;
         this.business = bz;
         initComponents();
-        customer = cp;
         salesperson = spp;
         salesPersonTextField.setText(salesperson.getPerson().toString());
-        customerTextField.setText(customer.getCustomerId());
         MasterOrderList mol = business.getMasterOrderList();
-        currentOrder =  mol.newOrder(customer, salesperson); //no order was made yet
+        if(customer!=null){
+            currentOrder =  mol.newOrder(customer, salesperson); //no order was made yet
+        }
+        else{
+            //customer = business.getCustomerDirectory().findCustomer(customerComboBox.getSelectedItem().toString());
+            //currentOrder = mol.newOrder(customer,salesperson);
+        }
         initializeTable();
-
+        initializeCustomerDropdown();
+        
     }
-
+    
+    private void initializeCustomerDropdown(){
+        ArrayList<CustomerProfile> customerList = business.getCustomerDirectory().getCustomerlist();
+        
+        for(CustomerProfile cp: customerList){
+            customerComboBox.addItem(cp.getCustomerId());
+        }
+    }
+    
     private void initializeTable() {
 
 //clear supplier table
@@ -168,7 +181,6 @@ public class ProcessOrder extends javax.swing.JPanel {
         jButton1 = new javax.swing.JButton();
         SuppliersComboBox = new javax.swing.JComboBox<>();
         jLabel10 = new javax.swing.JLabel();
-        customerTextField = new javax.swing.JTextField();
         salesPersonTextField = new javax.swing.JTextField();
         jLabel11 = new javax.swing.JLabel();
         jPanel1 = new javax.swing.JPanel();
@@ -182,6 +194,7 @@ public class ProcessOrder extends javax.swing.JPanel {
         jLabel5 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         productNameTextField = new javax.swing.JTextField();
+        customerComboBox = new javax.swing.JComboBox<>();
 
         setBackground(new java.awt.Color(0, 153, 153));
         setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -295,7 +308,6 @@ public class ProcessOrder extends javax.swing.JPanel {
 
         jLabel10.setText("Customer");
         add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 50, 150, -1));
-        add(customerTextField, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 70, 160, -1));
         add(salesPersonTextField, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 70, 160, -1));
 
         jLabel11.setText("Sales person");
@@ -344,6 +356,13 @@ public class ProcessOrder extends javax.swing.JPanel {
 
         add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 410, 600, 170));
         jPanel1.getAccessibleContext().setAccessibleName("Business -wide Product Intelligence");
+
+        customerComboBox.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                customerComboBoxActionPerformed(evt);
+            }
+        });
+        add(customerComboBox, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 70, 160, -1));
     }// </editor-fold>//GEN-END:initComponents
 
     private void BackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BackActionPerformed
@@ -444,6 +463,14 @@ public class ProcessOrder extends javax.swing.JPanel {
      refreshSupplierProductCatalogTable();
     }//GEN-LAST:event_SuppliersComboBoxActionPerformed
 
+    private void customerComboBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_customerComboBoxActionPerformed
+        // TODO add your handling code here:
+        customer = business.getCustomerDirectory().findCustomer(customerComboBox.getSelectedItem().toString());
+        if(customer!=null){
+            //currentOrder.setCustomer(customer);
+        }
+    }//GEN-LAST:event_customerComboBoxActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton Back;
@@ -451,7 +478,7 @@ public class ProcessOrder extends javax.swing.JPanel {
     private javax.swing.JTable OrderItemsTable;
     private javax.swing.JTable SupplierCatalogTable;
     private javax.swing.JComboBox<String> SuppliersComboBox;
-    private javax.swing.JTextField customerTextField;
+    private javax.swing.JComboBox<String> customerComboBox;
     private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
