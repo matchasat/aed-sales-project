@@ -15,6 +15,7 @@ import TheBusiness.CustomerManagement.CustomerProfile;
 import TheBusiness.SalesManagement.SalesPersonProfile;
 import UserInterface.Main.WorkSpaceProfiles.OrderManagement.ManageSalesPersonOrders;
 import UserInterface.Main.WorkSpaceProfiles.OrderManagement.ProcessOrder;
+import java.awt.CardLayout;
 import javax.swing.JPanel;
 
 /**
@@ -213,12 +214,10 @@ public class SalesPersonWorkAreaJPanel extends javax.swing.JPanel {
 
     private void jButton8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton8ActionPerformed
         // TODO add your handling code here:
+        Comission comissionPanel = new Comission(CardSequencePanel, (CardLayout) CardSequencePanel.getLayout());
+        CardSequencePanel.add("Comission", new Comission(CardSequencePanel, (CardLayout) CardSequencePanel.getLayout()));
+        ((CardLayout) CardSequencePanel.getLayout()).show(CardSequencePanel, "Comission");
 
-        CardSequencePanel.removeAll();
-        //      ViewBusinessUnitRiskProfile drpd= new ViewBusinessUnitRiskProfile(businessunit, CardSequencePanel);
-//        ManageHazards drpd = new ManageHazards(businessunit, CardSequencePanel);
-//        CardSequencePanel.add("ManageRiskProfiles", drpd);
-        ((java.awt.CardLayout) CardSequencePanel.getLayout()).next(CardSequencePanel);
 }//GEN-LAST:event_jButton8ActionPerformed
 
     private void jButton11ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton11ActionPerformed
